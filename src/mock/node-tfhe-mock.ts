@@ -21,6 +21,24 @@ class CompactPkeCrsMock {
   }
 }
 
+class CompactPkePublicParamsMock {
+  private _data: Uint8Array;
+  private constructor() {
+    this._data = new Uint8Array();
+  }
+  safe_serialize(serialized_size_limit: bigint): Uint8Array {
+    return this._data;
+  }
+  static safe_deserialize(
+    buffer: Uint8Array,
+    serialized_size_limit: bigint,
+  ): CompactPkePublicParamsMock {
+    const instance = new CompactPkePublicParamsMock();
+    instance._data = buffer;
+    return instance;
+  }
+}
+
 class TfheCompactPublicKeyMock {
   private _data: Uint8Array;
   private constructor() {
@@ -48,6 +66,7 @@ function initThreadPoolMock() {}
 export {
   TfheCompactPublicKeyMock as TfheCompactPublicKey,
   CompactPkeCrsMock as CompactPkeCrs,
+  CompactPkePublicParamsMock as CompactPkePublicParams,
   TFHEInputMock as TFHEInput,
   init_panic_hook_mock as init_panic_hook,
   initThreadPoolMock as initThreadPool,

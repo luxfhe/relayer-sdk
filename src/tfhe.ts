@@ -7,15 +7,15 @@ import {
   CompactPkeCrs,
   ShortintCompactPublicKeyEncryptionParameters,
   ShortintCompactPublicKeyEncryptionParametersName,
-} from 'node-tfhe';
+} from '@luxfhe/wasm/node';
 import { bytesToHexNo0x } from './utils/bytes';
 
 export const createTfheKeypair = () => {
   const block_params = new ShortintParameters(
-    ShortintParametersName.PARAM_MESSAGE_2_CARRY_2_KS_PBS_TUNIFORM_2M128,
+    ShortintParametersName.PARAM_MESSAGE_2_CARRY_2_KS_PBS_TUNIFORM_2M64,
   );
   const casting_params = new ShortintCompactPublicKeyEncryptionParameters(
-    ShortintCompactPublicKeyEncryptionParametersName.V1_0_PARAM_PKE_MESSAGE_2_CARRY_2_KS_PBS_TUNIFORM_2M128,
+    ShortintCompactPublicKeyEncryptionParametersName.SHORTINT_PARAM_PKE_MESSAGE_2_CARRY_2_KS_PBS_TUNIFORM_2M64,
   );
   const config = TfheConfigBuilder.default()
     .use_custom_parameters(block_params)

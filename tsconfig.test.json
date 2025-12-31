@@ -15,7 +15,11 @@
     "baseUrl": ".",
     "resolveJsonModule": true,
     "paths": {
-      "*": ["*"]
+      "*": ["*"],
+      "@luxfhe/wasm/web": ["../packages/wasm/dist/web/index"],
+      "@luxfhe/wasm/node": ["../packages/wasm/dist/node/index"],
+      "@luxfhe/kms/web": ["../packages/kms/dist/web/index"],
+      "@luxfhe/kms/node": ["../packages/kms/dist/node/index"]
     },
     // Add a bit of extra testing
     "noEmitOnError": true,

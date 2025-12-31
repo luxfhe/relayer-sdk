@@ -38,12 +38,12 @@ function setupGlobalJestFhevmConfig(type, envFile) {
       verifyingContractAddressInputVerification:
         parsedEnv['INPUT_VERIFICATION_ADDRESS'] ??
         '0x483b9dE06E4E4C7D35CCf5837A1668487406D955',
-      chainId: Number(parsedEnv['CHAIN_ID'] ?? '11155111'),
+      chainId: Number(parsedEnv['CHAIN_ID'] ?? '96369'),
       gatewayChainId: Number(parsedEnv['CHAIN_ID_GATEWAY'] ?? '10901'),
       network:
-        parsedEnv['RPC_URL'] ?? 'https://ethereum-sepolia-rpc.publicnode.com',
+        parsedEnv['RPC_URL'] ?? 'https://api.lux.network/ext/bc/C/rpc',
       relayerUrl:
-        parsedEnv['RELAYER_URL'] ?? 'https://relayer.testnet.zama.org',
+        parsedEnv['RELAYER_URL'] ?? 'https://relayer.lux.network',
     },
     testContracts: {
       FHECounterUserDecryptAddress:

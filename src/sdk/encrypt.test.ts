@@ -24,7 +24,8 @@ describeIfFetchMock('encrypt', () => {
     input.addAddress('0xa5e1defb98EFe38EBb2D958CEe052410247F4c80');
     input.add256(BigInt('2339389323922393930'));
     const ciphertext = input.encrypt();
-    expect(ciphertext.length).toBe(20106);
+    // tfhe 0.8.7 with TUNIFORM_2M64 produces smaller ciphertexts
+    expect(ciphertext.length).toBe(10472);
   }, 60000);
 
   it('encrypt one 0 value', async () => {
@@ -38,7 +39,8 @@ describeIfFetchMock('encrypt', () => {
     });
     input.add128(BigInt(0));
     const ciphertext = input.encrypt();
-    expect(ciphertext.length).toBe(18922);
+    // tfhe 0.8.7 with TUNIFORM_2M64 produces smaller ciphertexts
+    expect(ciphertext.length).toBe(9288);
   });
 
   it('throws errors', async () => {

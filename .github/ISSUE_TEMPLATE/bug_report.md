@@ -1,8 +1,8 @@
 ---
-name: 🐛 fhevm SDK Bug report
-about: Use this template to report issues encountered while using the fhevm SDK for interacting with Fhevm smart contracts.
+name: LuxFHE SDK Bug report
+about: Use this template to report issues encountered while using the LuxFHE SDK for interacting with FHE smart contracts.
 title: ''
-labels: bug, fhevm
+labels: bug, luxfhe
 assignees: ''
 ---
 
@@ -23,17 +23,17 @@ If applicable, provide screenshots or logs that capture the issue. Include any c
 Fill in the relevant environment details where the issue was observed:
 
 - **Browser**: [e.g., Chrome v90, Firefox v88]
-- **Node.js Version**: [e.g., `v14.17.0`]
-- **`fhevm SDK` Version**: [e.g., `v0.2.1`]
+- **Node.js Version**: [e.g., `v22.0.0`]
+- **`@luxfhe/relayer-sdk` Version**: [e.g., `v0.5.0`]
 - **Package Manager**: [npm, yarn, pnpm]
 - **Network Configuration**:
-  - **Chain ID**: [e.g., `9000`]
-  - **RPC URL**: [e.g., `https://devnet.zama.ai`]
-  - **Relayer URL**: [e.g., `https://relayer.devnet.zama.ai`]
+  - **Chain ID**: [e.g., `96369`]
+  - **RPC URL**: [e.g., `https://api.lux.network/ext/bc/C/rpc`]
+  - **Relayer URL**: [e.g., `https://relayer.lux.network`]
 
 ### **Steps Taken to Debug**
 
-Outline any steps you’ve taken to troubleshoot the issue (e.g., using mocked mode, enabling verbose logging, testing with a different environment or network).
+Outline any steps you've taken to troubleshoot the issue (e.g., using mocked mode, enabling verbose logging, testing with a different environment or network).
 
 ### **Resources / References**
 
@@ -51,4 +51,4 @@ If applicable, include links to any related documentation or reference materials
 
 ---
 
-By including these details, we can ensure a faster and more accurate resolution for your issue. Thank you for helping improve fhevm SDK!
+By including these details, we can ensure a faster and more accurate resolution for your issue. Thank you for helping improve LuxFHE SDK!

@@ -1,12 +1,14 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/api-extractor/v7/api-extractor.schema.json",
   "mainEntryPointFilePath": "../dist.tmp/web.d.ts",
+  "bundledPackages": ["ethers"],
   "dtsRollup": {
     "enabled": true,
     "untrimmedFilePath": "../lib/web.d.ts"
   },
   "compiler": {
-    "tsconfigFilePath": "./tsconfig.dts.json"
+    "tsconfigFilePath": "./tsconfig.dts.json",
+    "skipLibCheck": true
   },
   "projectFolder": ".",
   "apiReport": {

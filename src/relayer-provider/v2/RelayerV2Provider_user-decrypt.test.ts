@@ -353,7 +353,8 @@ describeIfFetch('FhevmInstance.userDecrypot:sepolia:', () => {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-describe('FhevmInstance.createEIP712', () => {
+// These tests require network access to create an instance from the relayer
+describeIfFetch('FhevmInstance.createEIP712', () => {
   beforeEach(() => {
     removeAllFetchMockRoutes();
   });

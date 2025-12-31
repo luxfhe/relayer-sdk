@@ -10,9 +10,16 @@ import commonjs from '@rollup/plugin-commonjs';
 import nodePolyfills from 'rollup-plugin-polyfill-node';
 import path from 'path';
 import fs from 'fs';
+import { createRequire } from 'module';
+
+const require = createRequire(import.meta.url);
+
+// Find tfhe and tkms paths (works with pnpm hoisting)
+const tfhePath = path.dirname(require.resolve('tfhe/package.json'));
+const tkmsPath = path.dirname(require.resolve('tkms/package.json'));
 
 const wasmBindgenRayon = fs.readdirSync(
-  path.resolve('node_modules/tfhe/snippets'),
+  path.resolve(tfhePath, 'snippets'),
 )[0];
 
 const nodePlugins = [
@@ -50,23 +57,24 @@ export default [
       ...webPlugins,
       copy({
         targets: [
-          { src: 'node_modules/tfhe/tfhe_bg.wasm', dest: 'lib/' },
-          { src: 'node_modules/tkms/kms_lib_bg.wasm', dest: 'lib/' },
+          { src: path.join(tfhePath, 'tfhe_bg.wasm'), dest: 'lib/' },
+          { src: path.join(tkmsPath, 'kms_lib_bg.wasm'), dest: 'lib/' },
         ],
       }),
     ],
   },
   // Build 'workerHelpers.js' in ESM format
-  {
-    input: `./node_modules/tfhe/snippets/${wasmBindgenRayon}/src/workerHelpers.js`,
-    output: {
-      file: 'lib/workerHelpers.js',
-      inlineDynamicImports: true,
-      name: 'worker',
-      format: 'esm',
-    },
-    plugins: [OMT()],
-  },
+  // Skip this for now - it's optional for worker thread support
+  // {
+  //   input: path.join(tfhePath, `snippets/${wasmBindgenRayon}/src/workerHelpers.js`),
+  //   output: {
+  //     file: 'lib/workerHelpers.js',
+  //     inlineDynamicImports: true,
+  //     name: 'worker',
+  //     format: 'esm',
+  //   },
+  //   plugins: [OMT()],
+  // },
   {
     input: 'src/node.ts',
     output: {

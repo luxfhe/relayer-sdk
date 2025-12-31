@@ -16,6 +16,7 @@ export type TFHEType = {
   TFHEInput?: any;
   TfheCompactPublicKey: any;
   CompactPkeCrs: any;
+  CompactPkePublicParams: any;
   initThreadPool?: any;
   init_panic_hook: any;
   CompactCiphertextList: any;

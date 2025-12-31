@@ -4,11 +4,11 @@ import initTFHE, {
   init_panic_hook,
   TfheCompactPublicKey,
   CompactPkeCrs,
+  CompactPkePublicParams,
   CompactCiphertextList,
   ZkComputeLoad,
-} from 'tfhe';
-import {
-  default as initTKMS,
+} from '@luxfhe/wasm/web';
+import initTKMS, {
   u8vec_to_ml_kem_pke_pk,
   u8vec_to_ml_kem_pke_sk,
   new_client,
@@ -18,7 +18,7 @@ import {
   ml_kem_pke_pk_to_u8vec,
   ml_kem_pke_sk_to_u8vec,
   ml_kem_pke_get_pk,
-} from 'tkms';
+} from '@luxfhe/kms/web';
 
 window.TFHE = {
   default: initTFHE,
@@ -26,6 +26,7 @@ window.TFHE = {
   init_panic_hook,
   TfheCompactPublicKey: TfheCompactPublicKey as any,
   CompactPkeCrs: CompactPkeCrs as any,
+  CompactPkePublicParams: CompactPkePublicParams as any,
   CompactCiphertextList: CompactCiphertextList as any,
   ZkComputeLoad: ZkComputeLoad as any,
 };
@@ -42,8 +43,8 @@ window.TKMS = {
   ml_kem_pke_get_pk,
 };
 
-export { InitInput as TFHEInput } from 'tfhe';
-export { InitInput as KMSInput } from 'tkms';
+export type { InitInput as TFHEInput } from '@luxfhe/wasm/web';
+export type { InitInput as KMSInput } from '@luxfhe/kms/web';
 
 export type { TFHEType } from './tfheType';
 

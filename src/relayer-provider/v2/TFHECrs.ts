@@ -228,7 +228,7 @@ export class TFHECrs {
 
   private static _fromBytes(params: TFHECrsBytesType) {
     const _params = {
-      compactPkeCrs: TFHE.CompactPkeCrs.safe_deserialize(
+      compactPkeCrs: TFHE.CompactPkePublicParams.safe_deserialize(
         params.data,
         SERIALIZED_SIZE_LIMIT_CRS,
       ),

@@ -1,6 +1,6 @@
 # Public Decryption
 
-This document explains how to perform public decryption of FHEVM ciphertexts.
+This document explains how to perform public decryption of LuxFHE ciphertexts.
 Public decryption is required when you want everyone to see the value in a ciphertext, for example the result of private auction.
 Public decryption can be done using the Relayer HTTP endpoint.
 
@@ -8,9 +8,7 @@ Public decryption can be done using the Relayer HTTP endpoint.
 
 Calling the public decryption endpoint of the Relayer can be done easily using the following code snippet.
 
-{% hint style="info" %}
-The total bit length of all ciphertexts being decrypted in a single request must not exceed 2048 bits. Each encrypted type has a specific bit length, for instance `euint8` uses 8 bits and `euint16` uses 16 bits. For the full list of encrypted types and their corresponding bit lengths, refer to the [encrypted types documentation](https://docs.zama.org/protocol/solidity-guides/smart-contract/types#list-of-encrypted-types).
-{% endhint %}
+> **Note:** The total bit length of all ciphertexts being decrypted in a single request must not exceed 2048 bits. Each encrypted type has a specific bit length, for instance `euint8` uses 8 bits and `euint16` uses 16 bits. For the full list of encrypted types and their corresponding bit lengths, refer to the [encrypted types documentation](https://docs.lux.network/fhe/types).
 
 ```ts
 // A list of ciphertexts handles to decrypt
@@ -35,4 +33,4 @@ const results: PublicDecryptResults = instance.publicDecrypt(handles);
 
 ## Onchain Public Decryption Verification
 
-For more details about public decryption and on-chain decryption proof please refer to the on [public decryption page](https://docs.zama.ai/protocol/solidity-guides/smart-contract/oracle).
+For more details about public decryption and on-chain decryption proof please refer to the [public decryption page](https://docs.lux.network/fhe/public-decryption).

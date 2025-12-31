@@ -100,7 +100,7 @@ export const getPublicParams = async (config: {
     try {
       return {
         2048: {
-          publicParams: TFHE.CompactPkeCrs.safe_deserialize(
+          publicParams: TFHE.CompactPkePublicParams.safe_deserialize(
             buff,
             SERIALIZED_SIZE_LIMIT_CRS,
           ),

@@ -1,7 +1,7 @@
 {
-  "name": "@zama-fhe/relayer-sdk",
-  "version": "0.4.0-alpha.2",
-  "description": "fhevm Relayer SDK",
+  "name": "@luxfhe/relayer-sdk",
+  "version": "0.5.0",
+  "description": "LuxFHE Relayer SDK - FHE transaction relaying for Lux Network",
   "main": "lib/node.js",
   "types": "lib/node.d.ts",
   "browser": "lib/web.js",
@@ -30,8 +30,8 @@
   "scripts": {
     "lint": "eslint src/",
     "generateKeys": "./generateKeys.js",
-    "build": "npm run build:lib && npm run build:bundle",
-    "build:lib": "npm run rollup:lib && npm run build:dts",
+    "build": "pnpm run build:lib && pnpm run build:bundle",
+    "build:lib": "pnpm run rollup:lib && pnpm run build:dts",
     "build:bundle": "vite build --config config/vite.config.js",
     "test": "jest --colors --passWithNoTests --coverage",
     "test:testnet": "jest --colors --passWithNoTests --coverage --config jest.testnet.config.cjs",
@@ -48,28 +48,27 @@
     "tsc:ts": "tsc --project ./tsconfig.json --noEmit",
     "tsc:ts:test": "tsc --project ./tsconfig.test.json --noEmit",
     "flatten:dts": "api-extractor run --local --config config/api-extractor.node.json && api-extractor run --local --config config/api-extractor.web.json",
-    "build:dts": "npm run clean:dts && npm run tsc:dts && npm run flatten:dts && npm run clean:dts",
+    "build:dts": "pnpm run clean:dts && pnpm run tsc:dts && pnpm run copy:dts && pnpm run clean:dts",
+    "copy:dts": "cp dist.tmp/node.d.ts lib/node.d.ts && cp dist.tmp/web.d.ts lib/web.d.ts && cp dist.tmp/init.d.ts lib/init.d.ts && cp dist.tmp/index.d.ts lib/index.d.ts",
     "version": "cd ./scripts && node ./generate-version.cjs"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zama-ai/relayer-sdk.git"
+    "url": "git+https://github.com/luxfhe/relayer-sdk.git"
   },
-  "author": "",
+  "author": "Lux Partners Limited",
   "license": "BSD-3-Clause-Clear",
   "bugs": {
-    "url": "https://github.com/zama-ai/relayer-sdk/issues"
+    "url": "https://github.com/luxfhe/relayer-sdk/issues"
   },
-  "homepage": "https://github.com/zama-ai/relayer-sdk#readme",
+  "homepage": "https://github.com/luxfhe/relayer-sdk#readme",
   "dependencies": {
+    "@luxfhe/wasm": "^0.1.3",
+    "@luxfhe/kms": "^0.1.2",
     "commander": "^14.0.0",
     "ethers": "^6.15.0",
     "fetch-retry": "^6.0.0",
     "keccak": "^3.0.4",
-    "node-tfhe": "1.4.0-alpha.3",
-    "node-tkms": "^0.12.0",
-    "tfhe": "1.4.0-alpha.3",
-    "tkms": "^0.12.0",
     "wasm-feature-detect": "^1.8.0"
   },
   "devDependencies": {

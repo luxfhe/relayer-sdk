@@ -25,9 +25,9 @@ export abstract class RelayerErrorBase extends Error {
 
   private static readonly VERSION = version;
   private static readonly DEFAULT_DOCS_BASE_URL =
-    'https//docs.zama.org' as const;
+    'https://docs.lux.network/fhe' as const;
   private static readonly FULL_VERSION =
-    `@zama-fhe/relayer-sdk@${RelayerErrorBase.VERSION}` as const;
+    `@luxfhe/relayer-sdk@${RelayerErrorBase.VERSION}` as const;
 
   constructor(params: RelayerErrorBaseParams) {
     let details;

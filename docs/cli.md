@@ -1,13 +1,13 @@
 # Using the CLI
 
-The `fhevm` Command-Line Interface (CLI) tool provides a simple and efficient way to encrypt data for use with the blockchain's Fully Homomorphic Encryption (FHE) system. This guide explains how to install and use the CLI to encrypt integers and booleans for confidential smart contracts.
+The `luxfhe` Command-Line Interface (CLI) tool provides a simple and efficient way to encrypt data for use with the blockchain's Fully Homomorphic Encryption (FHE) system. This guide explains how to install and use the CLI to encrypt integers and booleans for confidential smart contracts.
 
 ## Installation
 
-Ensure you have [Node.js](https://nodejs.org/) installed on your system before proceeding. Then, globally install the `@zama-fhe/relayer-sdk` package to enable the CLI tool:
+Ensure you have [Node.js](https://nodejs.org/) installed on your system before proceeding. Then, globally install the `@luxfhe/relayer-sdk` package to enable the CLI tool:
 
 ```bash
-npm install -g @zama-fhe/relayer-sdk
+npm install -g @luxfhe/relayer-sdk
 ```
 
 Once installed, you can access the CLI using the `relayer` command. Verify the installation and explore available commands using:
@@ -26,7 +26,7 @@ The CLI allows you to encrypt integers and booleans for use in smart contracts. 
 relayer encrypt --node <NODE_URL> <CONTRACT_ADDRESS> <USER_ADDRESS> <DATA:TYPE>...
 ```
 
-- **`--node`**: Specifies the RPC URL of the blockchain node (e.g., `http://localhost:8545`).
+- **`--node`**: Specifies the RPC URL of the blockchain node (e.g., `https://api.lux.network/ext/bc/C/rpc`).
 - **`<CONTRACT_ADDRESS>`**: The address of the contract interacting with the encrypted data.
 - **`<USER_ADDRESS>`**: The address of the user associated with the encrypted data.
 - **`<DATA:TYPE>`**: The data to encrypt, followed by its type:
