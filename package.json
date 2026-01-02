@@ -1,6 +1,6 @@
 {
   "name": "@luxfhe/relayer-sdk",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "LuxFHE Relayer SDK - FHE transaction relaying for Lux Network",
   "main": "lib/node.js",
   "types": "lib/node.d.ts",
