@@ -15,7 +15,15 @@ import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 
 // Find @luxfhe/wasm package path (native Go FHE)
-const luxfheWasmPath = path.dirname(require.resolve('@luxfhe/wasm/package.json'));
+let luxfheWasmPath;
+try {
+  // Try to resolve from package.json export
+  luxfheWasmPath = path.dirname(require.resolve('@luxfhe/wasm/package.json'));
+} catch {
+  // Fallback: resolve the main entry and go up
+  const mainPath = require.resolve('@luxfhe/wasm');
+  luxfheWasmPath = path.resolve(path.dirname(mainPath), '..');
+}
 
 const nodePlugins = [
   json(),
