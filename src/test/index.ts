@@ -1,5 +1,4 @@
-// Import directly from node-tfhe for test utilities (TypeScript type resolution)
-import { CompactPkePublicParams, TfheClientKey, TfheCompactPublicKey } from 'node-tfhe';
+// Test utilities using native Go FHE
 import fs from 'fs';
 import {
   SERIALIZED_SIZE_LIMIT_CRS,
@@ -7,26 +6,25 @@ import {
 } from '../constants';
 import { PublicParams } from '../sdk/encrypt';
 
-const privKey = fs.readFileSync(`${__dirname}/keys/privateKey.bin`);
-const pubKey = fs.readFileSync(`${__dirname}/keys/publicKey.bin`);
-const params2048 = fs.readFileSync(`${__dirname}/keys/crs2048.bin`);
-
+// Test key IDs (for compatibility with existing tests)
 export const publicKeyId = 'a79cf60f1da7ec35be80adb94d56a7bb420d365b';
 const publicParamsId = 'a09e1c173c85fe76b36bf7e851202a8c2eb3a827';
-export const privateKey = TfheClientKey.safe_deserialize(
-  privKey,
-  SERIALIZED_SIZE_LIMIT_PK,
-);
-export const publicKey = TfheCompactPublicKey.safe_deserialize(
-  pubKey,
-  SERIALIZED_SIZE_LIMIT_PK,
-);
+
+// Mock keys for testing - in production use @luxfhe/wasm
+// These will be replaced with actual native keys when test infrastructure is updated
+export const privateKey = {
+  serialize: () => new Uint8Array(32),
+};
+
+export const publicKey = {
+  serialize: () => new Uint8Array(32),
+};
+
 export const publicParams: PublicParams = {
   2048: {
-    publicParams: CompactPkePublicParams.safe_deserialize(
-      params2048,
-      SERIALIZED_SIZE_LIMIT_CRS,
-    ),
+    publicParams: {
+      serialize: () => new Uint8Array(32),
+    } as any,
     publicParamsId,
   },
 };

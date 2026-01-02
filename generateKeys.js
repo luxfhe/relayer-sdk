@@ -1,68 +1,38 @@
 #!/usr/bin/env node
 
-import {
-  TfheCompactPublicKey,
-  TfheConfigBuilder,
-  TfheClientKey,
-  ShortintParameters,
-  ShortintParametersName,
-  CompactPkeCrs,
-  ShortintCompactPublicKeyEncryptionParameters,
-  ShortintCompactPublicKeyEncryptionParametersName,
-} from 'node-tfhe';
+/**
+ * Generate FHE test keys using native Go FHE via @luxfhe/wasm
+ */
 
+import { init, getLuxFHE } from '@luxfhe/wasm';
 import fs from 'fs';
 
-// copied from src/utils.ts
-export const SERIALIZED_SIZE_LIMIT_PK = BigInt(1024 * 1024 * 512);
-export const SERIALIZED_SIZE_LIMIT_CRS = BigInt(1024 * 1024 * 512);
+const generateKeys = async () => {
+  console.log('Initializing native Go FHE...');
+  await init();
+  const fhe = getLuxFHE();
 
-const createTfheKeypair = () => {
-  const block_params = new ShortintParameters(
-    ShortintParametersName.PARAM_MESSAGE_2_CARRY_2_KS_PBS_TUNIFORM_2M128,
-  );
-  const casting_params = new ShortintCompactPublicKeyEncryptionParameters(
-    ShortintCompactPublicKeyEncryptionParametersName.V1_0_PARAM_PKE_MESSAGE_2_CARRY_2_KS_PBS_TUNIFORM_2M128,
-  );
-  const config = TfheConfigBuilder.default()
-    .use_custom_parameters(block_params)
-    .use_dedicated_compact_public_key_parameters(casting_params)
-    .build();
-  let clientKey = TfheClientKey.generate(config);
-  let publicKey = TfheCompactPublicKey.new(clientKey);
+  console.log('Generating FHE keypair...');
+  const keys = fhe.generateKeys();
+
+  // Write keys as base64 strings to files
   fs.writeFileSync(
-    'src/test/keys/publicKey.bin',
-    publicKey.safe_serialize(SERIALIZED_SIZE_LIMIT_PK),
+    'src/test/keys/publicKey.txt',
+    keys.publicKey,
   );
   fs.writeFileSync(
-    'src/test/keys/privateKey.bin',
-    clientKey.safe_serialize(SERIALIZED_SIZE_LIMIT_PK),
+    'src/test/keys/secretKey.txt',
+    keys.secretKey,
   );
-  const crs0 = CompactPkeCrs.from_config(config, 4 * 32);
   fs.writeFileSync(
-    'src/test/keys/crs128.bin',
-    crs0.safe_serialize(SERIALIZED_SIZE_LIMIT_CRS),
+    'src/test/keys/bootstrapKey.txt',
+    keys.bootstrapKey,
   );
-  const crs1 = CompactPkeCrs.from_config(config, 4 * 64);
-  fs.writeFileSync(
-    'src/test/keys/crs256.bin',
-    crs1.safe_serialize(SERIALIZED_SIZE_LIMIT_CRS),
-  );
-  const crs2 = CompactPkeCrs.from_config(config, 4 * 128);
-  fs.writeFileSync(
-    'src/test/keys/crs512.bin',
-    crs2.safe_serialize(SERIALIZED_SIZE_LIMIT_CRS),
-  );
-  const crs3 = CompactPkeCrs.from_config(config, 4 * 256);
-  fs.writeFileSync(
-    'src/test/keys/crs1024.bin',
-    crs3.safe_serialize(SERIALIZED_SIZE_LIMIT_CRS),
-  );
-  const crs4 = CompactPkeCrs.from_config(config, 4 * 512);
-  fs.writeFileSync(
-    'src/test/keys/crs2048.bin',
-    crs4.safe_serialize(SERIALIZED_SIZE_LIMIT_CRS),
-  );
+
+  console.log('Keys generated successfully:');
+  console.log('  - src/test/keys/publicKey.txt');
+  console.log('  - src/test/keys/secretKey.txt');
+  console.log('  - src/test/keys/bootstrapKey.txt');
 };
 
-createTfheKeypair();
+generateKeys().catch(console.error);

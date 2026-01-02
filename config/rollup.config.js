@@ -14,13 +14,8 @@ import { createRequire } from 'module';
 
 const require = createRequire(import.meta.url);
 
-// Find tfhe and tkms paths (works with pnpm hoisting)
-const tfhePath = path.dirname(require.resolve('tfhe/package.json'));
-const tkmsPath = path.dirname(require.resolve('tkms/package.json'));
-
-const wasmBindgenRayon = fs.readdirSync(
-  path.resolve(tfhePath, 'snippets'),
-)[0];
+// Find @luxfhe/wasm package path (native Go FHE)
+const luxfheWasmPath = path.dirname(require.resolve('@luxfhe/wasm/package.json'));
 
 const nodePlugins = [
   json(),
@@ -40,7 +35,7 @@ const webPlugins = [
   commonjs(),
   resolve({
     browser: true,
-    resolveOnly: ['tfhe', 'tkms'],
+    resolveOnly: ['@luxfhe/wasm', '@luxfhe/kms'],
     extensions: ['.js', '.ts', '.wasm'],
   }),
 ];
@@ -57,8 +52,8 @@ export default [
       ...webPlugins,
       copy({
         targets: [
-          { src: path.join(tfhePath, 'tfhe_bg.wasm'), dest: 'lib/' },
-          { src: path.join(tkmsPath, 'kms_lib_bg.wasm'), dest: 'lib/' },
+          { src: path.join(luxfheWasmPath, 'wasm/luxfhe.wasm'), dest: 'lib/' },
+          { src: path.join(luxfheWasmPath, 'wasm/wasm_exec.js'), dest: 'lib/' },
         ],
       }),
     ],
@@ -85,7 +80,7 @@ export default [
     plugins: [...nodePlugins],
     // Suppress warning
     // https://rollupjs.org/troubleshooting/#warning-treating-module-as-external-dependency
-    external: ['ethers', 'fetch-retry', 'node-tfhe', 'node-tkms', 'keccak'],
+    external: ['ethers', 'fetch-retry', '@luxfhe/wasm', '@luxfhe/kms', 'keccak'],
   },
   {
     input: 'src/node.ts',
@@ -97,7 +92,7 @@ export default [
     plugins: [...nodePlugins],
     // Suppress warning
     // https://rollupjs.org/troubleshooting/#warning-treating-module-as-external-dependency
-    external: ['ethers', 'fetch-retry', 'node-tfhe', 'node-tkms', 'keccak'],
+    external: ['ethers', 'fetch-retry', '@luxfhe/wasm', '@luxfhe/kms', 'keccak'],
   },
   // Internal entry point for bin/ scripts (not part of public API)
   {
@@ -108,6 +103,6 @@ export default [
       format: 'es',
     },
     plugins: [...nodePlugins],
-    external: ['ethers', 'fetch-retry', 'node-tfhe', 'node-tkms', 'keccak'],
+    external: ['ethers', 'fetch-retry', '@luxfhe/wasm', '@luxfhe/kms', 'keccak'],
   },
 ];
