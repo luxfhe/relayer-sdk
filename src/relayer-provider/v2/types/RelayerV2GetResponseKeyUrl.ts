@@ -39,7 +39,7 @@ export function assertIsRelayerV2GetResponseKeyUrl(
     assertIsRelayerV2KeyData(crs[keys[i]], `${name}.response.crs.${keys[i]}`);
   }
 
-  // fhe_key_info
+  // fheKeyInfo
   assertRecordArrayProperty(value.response, 'fheKeyInfo', `${name}.response`);
   const fheKeyInfo = value.response.fheKeyInfo;
   for (let i = 0; i < fheKeyInfo.length; ++i) {
@@ -63,8 +63,8 @@ export function toRelayerV1KeyUrlResponse(
 ): RelayerV1KeyUrlResponse {
   const fheKeyInfoV1: Array<RelayerV1KeyInfo> =
     response.response.fheKeyInfo.map((v2Info) => ({
-      fhe_public_key: {
-        data_id: v2Info.fhePublicKey.dataId,
+      fhePublicKey: {
+        dataId: v2Info.fhePublicKey.dataId,
         urls: v2Info.fhePublicKey.urls,
       },
     }));
@@ -72,14 +72,14 @@ export function toRelayerV1KeyUrlResponse(
   const crsV1: Record<string, RelayerV1KeyData> = {};
   for (const [key, v2Data] of Object.entries(response.response.crs)) {
     crsV1[key] = {
-      data_id: v2Data.dataId,
+      dataId: v2Data.dataId,
       urls: v2Data.urls,
     };
   }
 
   return {
     response: {
-      fhe_key_info: fheKeyInfoV1,
+      fheKeyInfo: fheKeyInfoV1,
       crs: crsV1,
     },
   };

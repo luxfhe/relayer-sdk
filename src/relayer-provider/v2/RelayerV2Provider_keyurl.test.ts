@@ -39,10 +39,10 @@ const relayerV2ResponseGetKeyUrl = {
 
 const fetchGetKeyUrlReturn = {
   response: {
-    fhe_key_info: [
+    fheKeyInfo: [
       {
-        fhe_public_key: {
-          data_id: 'fhe-public-key-data-id',
+        fhePublicKey: {
+          dataId: 'fhe-public-key-data-id',
           urls: [
             'https://luxfhe-testnet.s3.amazonaws.com/PUB-p1/PublicKey/0400000000000000000000000000000000000000000000000000000000000003',
           ],
@@ -51,7 +51,7 @@ const fetchGetKeyUrlReturn = {
     ],
     crs: {
       '2048': {
-        data_id: 'crs-data-id',
+        dataId: 'crs-data-id',
         urls: [
           'https://luxfhe-testnet.s3.amazonaws.com/PUB-p1/CRS/0500000000000000000000000000000000000000000000000000000000000004',
         ],

@@ -32,10 +32,10 @@ jest.mock('ethers', () => ({
 // curl https://relayer.lux.network/v2/keyurl
 const relayerV1ResponseGetKeyUrl = {
   response: {
-    fhe_key_info: [
+    fheKeyInfo: [
       {
-        fhe_public_key: {
-          data_id: 'fhe-public-key-data-id',
+        fhePublicKey: {
+          dataId: 'fhe-public-key-data-id',
           urls: [
             'https://luxfhe-testnet.s3.amazonaws.com/PUB-p1/PublicKey/0400000000000000000000000000000000000000000000000000000000000003',
           ],
@@ -44,7 +44,7 @@ const relayerV1ResponseGetKeyUrl = {
     ],
     crs: {
       '2048': {
-        data_id: 'crs-data-id',
+        dataId: 'crs-data-id',
         urls: [
           'https://luxfhe-testnet.s3.amazonaws.com/PUB-p1/CRS/0500000000000000000000000000000000000000000000000000000000000004',
         ],
@@ -71,7 +71,7 @@ describe('index', () => {
     fetchMock.get(`${relayerUrlV1}/keyurl`, relayerV1ResponseGetKeyUrl);
 
     fetchMock.get(
-      relayerV1ResponseGetKeyUrl.response.fhe_key_info[0].fhe_public_key
+      relayerV1ResponseGetKeyUrl.response.fheKeyInfo[0].fhePublicKey
         .urls[0],
       assetPublicKeyBytes,
     );

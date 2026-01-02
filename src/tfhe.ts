@@ -1,3 +1,5 @@
+// Use node-tfhe directly for TypeScript type resolution
+// (re-exported via @luxfhe/wasm/node at runtime)
 import {
   TfheCompactPublicKey,
   TfheConfigBuilder,
@@ -7,7 +9,7 @@ import {
   CompactPkeCrs,
   ShortintCompactPublicKeyEncryptionParameters,
   ShortintCompactPublicKeyEncryptionParametersName,
-} from '@luxfhe/wasm/node';
+} from 'node-tfhe';
 import { bytesToHexNo0x } from './utils/bytes';
 
 export const createTfheKeypair = () => {

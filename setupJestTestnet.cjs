@@ -1,5 +1,7 @@
 const { setupGlobalJestFhevmConfig } = require('./setupJestBase.cjs');
 
-global.TFHE = require('node-tfhe');
-global.TKMS = require('node-tkms');
+// Use npm-installed @luxfhe packages (which bundle node-tfhe/node-tkms)
+global.TFHE = require('@luxfhe/wasm/node');
+global.TKMS = require('@luxfhe/kms/node');
+
 setupGlobalJestFhevmConfig('testnet', '.env.testnet');

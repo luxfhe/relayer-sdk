@@ -13,10 +13,10 @@ import { EncryptionBits } from '../../types/primitives';
 // curl https://relayer.dev.lux.network/v1/keyurl
 export const relayerV1ResponseGetKeyUrl = {
   response: {
-    fhe_key_info: [
+    fheKeyInfo: [
       {
-        fhe_public_key: {
-          data_id: 'fhe-public-key-data-id',
+        fhePublicKey: {
+          dataId: 'fhe-public-key-data-id',
           urls: [
             'https://luxfhe-dev.s3.amazonaws.com/PUB-p1/PublicKey/0400000000000000000000000000000000000000000000000000000000000001',
           ],
@@ -25,7 +25,7 @@ export const relayerV1ResponseGetKeyUrl = {
     ],
     crs: {
       '2048': {
-        data_id: 'crs-data-id',
+        dataId: 'crs-data-id',
         urls: [
           'https://luxfhe-dev.s3.amazonaws.com/PUB-p1/CRS/0500000000000000000000000000000000000000000000000000000000000001',
         ],
@@ -49,7 +49,7 @@ export function setupV1RoutesKeyUrl() {
 
   fetchMock.get(TEST_CONFIG.v1.urls.keyUrl, relayerV1ResponseGetKeyUrl);
   fetchMock.get(
-    relayerV1ResponseGetKeyUrl.response.fhe_key_info[0].fhe_public_key.urls[0],
+    relayerV1ResponseGetKeyUrl.response.fheKeyInfo[0].fhePublicKey.urls[0],
     assetPublicKeyBytes,
   );
 

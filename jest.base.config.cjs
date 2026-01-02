@@ -17,12 +17,7 @@ module.exports = {
   },
   testEnvironment: 'node',
   moduleFileExtensions: ['ts', 'js', 'json', 'node'],
-  moduleNameMapper: {
-    '^@luxfhe/wasm/web$': '<rootDir>/../packages/wasm/dist/web/index.cjs',
-    '^@luxfhe/wasm/node$': '<rootDir>/../packages/wasm/dist/node/index.cjs',
-    '^@luxfhe/kms/web$': '<rootDir>/../packages/kms/dist/web/index.cjs',
-    '^@luxfhe/kms/node$': '<rootDir>/../packages/kms/dist/node/index.cjs',
-  },
+  // Use npm-installed @luxfhe packages (which bundle node-tfhe/node-tkms)
   collectCoverageFrom: [
     'src/**/*.ts',
     '!src/test/*',

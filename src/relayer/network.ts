@@ -26,22 +26,22 @@ export const getKeysFromRelayer = async (
     // Warning: if there are multiple keys available, the first one will most likely never be the
     // same between several calls (fetching the infos is non-deterministic)
     if (!publicKeyId) {
-      pubKeyUrl = data.response.fhe_key_info[0].fhe_public_key.urls[0];
-      publicKeyId = data.response.fhe_key_info[0].fhe_public_key.data_id;
+      pubKeyUrl = data.response.fheKeyInfo[0].fhePublicKey.urls[0];
+      publicKeyId = data.response.fheKeyInfo[0].fhePublicKey.dataId;
     } else {
       // If a publicKeyId is provided, get the corresponding info
-      const keyInfo = data.response.fhe_key_info.find(
-        (info) => info.fhe_public_key.data_id === publicKeyId,
+      const keyInfo = data.response.fheKeyInfo.find(
+        (info) => info.fhePublicKey.dataId === publicKeyId,
       );
 
       if (!keyInfo) {
         throw new Error(
-          `Could not find FHE key info with data_id ${publicKeyId}`,
+          `Could not find FHE key info with dataId ${publicKeyId}`,
         );
       }
 
       // TODO: Get a given party's public key url instead of the first one
-      pubKeyUrl = keyInfo.fhe_public_key.urls[0];
+      pubKeyUrl = keyInfo.fhePublicKey.urls[0];
     }
 
     const publicKeyResponse = await fetch(pubKeyUrl);
@@ -60,7 +60,7 @@ export const getKeysFromRelayer = async (
     }
 
     const publicParamsUrl = data.response.crs['2048'].urls[0];
-    const publicParamsId = data.response.crs['2048'].data_id;
+    const publicParamsId = data.response.crs['2048'].dataId;
 
     const publicParams2048Response = await fetch(publicParamsUrl);
     if (!publicParams2048Response.ok) {

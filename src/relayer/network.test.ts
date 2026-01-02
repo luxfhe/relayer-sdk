@@ -17,7 +17,7 @@ import { RelayerV1KeyUrlResponse } from '../relayer-provider/v1/types';
 //   response: {
 //     crs: {
 //       '2048': {
-//         data_id: 'd8d94eb3a23d22d3eb6b5e7b694e8afcd571d906',
+//         dataId: 'd8d94eb3a23d22d3eb6b5e7b694e8afcd571d906',
 //         param_choice: 1,
 //         signatures: ['0d13...', '4250...', 'a42c...', 'fhb5...'],
 //         urls: [
@@ -28,10 +28,10 @@ import { RelayerV1KeyUrlResponse } from '../relayer-provider/v1/types';
 //         ],
 //       },
 //     },
-//     fhe_key_info: [
+//     fheKeyInfo: [
 //       {
-//         fhe_public_key: {
-//           data_id: '408d8cbaa51dece7f782fe04ba0b1c1d017b1088',
+//         fhePublicKey: {
+//           dataId: '408d8cbaa51dece7f782fe04ba0b1c1d017b1088',
 //           param_choice: 1,
 //           signatures: ['cdff...', '123c...', '00ff...', 'a367...'],
 //           urls: [
@@ -42,7 +42,7 @@ import { RelayerV1KeyUrlResponse } from '../relayer-provider/v1/types';
 //           ],
 //         },
 //         fhe_server_key: {
-//           data_id: '408d8cbaa51dece7f782fe04ba0b1c1d017b1088',
+//           dataId: '408d8cbaa51dece7f782fe04ba0b1c1d017b1088',
 //           param_choice: 1,
 //           signatures: ['839b...', 'baef...', '55cc...', '81a4...'],
 //           urls: [
@@ -96,7 +96,7 @@ const payload: RelayerV1KeyUrlResponse = {
   response: {
     crs: {
       '2048': {
-        data_id: 'd8d94eb3a23d22d3eb6b5e7b694e8afcd571d906',
+        dataId: 'd8d94eb3a23d22d3eb6b5e7b694e8afcd571d906',
         urls: [
           'https://s3.amazonaws.com/bucket-name-1/PUB-p1/CRS/d8d94eb3a23d22d3eb6b5e7b694e8afcd571d906',
           'https://s3.amazonaws.com/bucket-name-4/PUB-p4/CRS/d8d94eb3a23d22d3eb6b5e7b694e8afcd571d906',
@@ -105,10 +105,10 @@ const payload: RelayerV1KeyUrlResponse = {
         ],
       },
     },
-    fhe_key_info: [
+    fheKeyInfo: [
       {
-        fhe_public_key: {
-          data_id: '408d8cbaa51dece7f782fe04ba0b1c1d017b1088',
+        fhePublicKey: {
+          dataId: '408d8cbaa51dece7f782fe04ba0b1c1d017b1088',
           urls: [
             'https://s3.amazonaws.com/bucket-name-1/PUB-p1/PublicKey/408d8cbaa51dece7f782fe04ba0b1c1d017b1088',
             'https://s3.amazonaws.com/bucket-name-4/PUB-p4/PublicKey/408d8cbaa51dece7f782fe04ba0b1c1d017b1088',

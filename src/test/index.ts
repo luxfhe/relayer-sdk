@@ -1,4 +1,5 @@
-import { CompactPkePublicParams, TfheClientKey, TfheCompactPublicKey } from '@luxfhe/wasm/node';
+// Import directly from node-tfhe for test utilities (TypeScript type resolution)
+import { CompactPkePublicParams, TfheClientKey, TfheCompactPublicKey } from 'node-tfhe';
 import fs from 'fs';
 import {
   SERIALIZED_SIZE_LIMIT_CRS,

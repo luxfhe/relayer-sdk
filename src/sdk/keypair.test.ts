@@ -1,12 +1,13 @@
 import { TEST_CONFIG } from '../test/config';
 import { hexToBytes } from '../utils/bytes';
 import { generateKeypair, createEIP712 } from './keypair';
+// Import directly from node-tkms for test utilities (TypeScript type resolution)
 import {
   ml_kem_pke_pk_to_u8vec,
   ml_kem_pke_sk_to_u8vec,
   u8vec_to_ml_kem_pke_pk,
   u8vec_to_ml_kem_pke_sk,
-} from '@luxfhe/kms/node';
+} from 'node-tkms';
 
 const describeIfFetchMock =
   TEST_CONFIG.type === 'fetch-mock' ? describe : describe.skip;
