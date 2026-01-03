@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite';
 import { nodePolyfills } from 'vite-plugin-node-polyfills';
-import { viteStaticCopy } from 'vite-plugin-static-copy';
 import { ignoreURL, changeLoadingWorker } from './vite.replace';
 
 const basePath = process.env.BASE_PATH || '/';
@@ -24,18 +23,8 @@ export default defineConfig({
     changeLoadingWorker(basePath),
     ignoreURL(basePath),
     nodePolyfills(),
-    viteStaticCopy({
-      targets: [
-        {
-          src: 'lib/tfhe_bg.wasm',
-          dest: '.',
-        },
-        {
-          src: 'lib/kms_lib_bg.wasm',
-          dest: '.',
-        },
-      ],
-    }),
+    // NOTE: WASM files are loaded dynamically at runtime from @luxfhe/wasm package
+    // No static copy needed - the wasm module handles its own loading
   ],
   worker: {
     format: 'iife',
