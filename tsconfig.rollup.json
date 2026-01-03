@@ -6,6 +6,7 @@
     "target": "ES2022",
     "lib": ["es2022", "DOM", "WebWorker"],
     "module": "esnext",
+    "moduleResolution": "bundler",
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowJs": true,
@@ -13,7 +14,11 @@
     "baseUrl": ".",
     "resolveJsonModule": true,
     "paths": {
-      "*": ["*"]
+      "*": ["*"],
+      "@luxfhe/wasm/web": ["node_modules/@luxfhe/wasm/dist/web/index"],
+      "@luxfhe/wasm/node": ["node_modules/@luxfhe/wasm/dist/node/index"],
+      "@luxfhe/kms/web": ["node_modules/@luxfhe/kms/dist/web/index"],
+      "@luxfhe/kms/node": ["node_modules/@luxfhe/kms/dist/node/index"]
     }
   },
   "include": ["src"],

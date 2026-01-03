@@ -7,6 +7,7 @@
     "target": "es5",
     "lib": ["es2022", "DOM", "WebWorker"],
     "module": "commonjs",
+    "moduleResolution": "bundler",
     // skipLibCheck is set to 'true' to skip typing errors due to DOM + WebWorker.
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -16,10 +17,10 @@
     "resolveJsonModule": true,
     "paths": {
       "*": ["*"],
-      "@luxfhe/wasm/web": ["../packages/wasm/dist/web/index"],
-      "@luxfhe/wasm/node": ["../packages/wasm/dist/node/index"],
-      "@luxfhe/kms/web": ["../packages/kms/dist/web/index"],
-      "@luxfhe/kms/node": ["../packages/kms/dist/node/index"]
+      "@luxfhe/wasm/web": ["node_modules/@luxfhe/wasm/dist/web/index"],
+      "@luxfhe/wasm/node": ["node_modules/@luxfhe/wasm/dist/node/index"],
+      "@luxfhe/kms/web": ["node_modules/@luxfhe/kms/dist/web/index"],
+      "@luxfhe/kms/node": ["node_modules/@luxfhe/kms/dist/node/index"]
     },
     // Add a bit of extra testing
     "noEmitOnError": true,

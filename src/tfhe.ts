@@ -28,7 +28,7 @@ export const createTfheKeypair = async (): Promise<LuxFHEKeys> => {
  */
 export const createTfhePublicKey = async (): Promise<string> => {
   const keys = await createTfheKeypair();
-  return keys.publicKey; // Already base64, convert if needed
+  return bytesToHexNo0x(keys.publicKey);
 };
 
 // Re-export types for compatibility
